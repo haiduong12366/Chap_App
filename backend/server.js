@@ -8,7 +8,7 @@ import messageRoutes from "./routes/message.routes.js"
 import userRoutes from "./routes/user.routes.js"
 import {app, server} from "./socket/socket.js"
 
-import connectToMongoDB from "../db/connectToMongoDB.js";
+import connectToMongoDB from "./db/connectToMongoDB.js";
 
 dotenv.config(); // run file env
 const PORT= process.env.PORT || 5000
