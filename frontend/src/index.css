@@ -3,23 +3,59 @@
 @tailwind utilities;
 
 body {
-	background: linear-gradient(rgba(0, 0, 0, 0.3	), rgba(0, 0, 0, 0.5)), url("/bg.jpg");
+	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
+		url("/bg.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
 }
 
+.scrollbar {
+	overflow: auto;
+	visibility: visible;
+}
+
+.hidden-scrollbar {
+	overflow: auto;
+	visibility: hidden;
+}
+
+/* .no-scrollbar {
+  overflow: auto;
+  visibility: hidden;
+} */
+
+/* .scrollbar{
+	overflow: auto;
+	visibility: hidden;
+} */
+
+/* .scrollbar:hover, */
+.scrollbar-inner {
+	visibility: visible;
+}
+
+/* .no-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+
+.no-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+} */
+
 /* dark mode looking scrollbar */
 ::-webkit-scrollbar {
-	width: 8px;
+	width: 7px;
 }
 
 ::-webkit-scrollbar-track {
 	background: #555;
+	border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #121212;
+	background: #242323;
 	border-radius: 5px;
 }
 
@@ -36,6 +72,7 @@ body {
 }
 
 @keyframes shake {
+
 	10%,
 	90% {
 		transform: translate3d(-1px, 0, 0);

@@ -23,13 +23,12 @@ const Conversations = () => {
     };
     use();
     // console.log("useGetConversations", conversationId);
-    
   }
 
-    console.log("conversations", conversations);
+  console.log("conversations", conversations);
 
   return (
-    <div className="py-2 flex flex-col overflow-auto">
+    <div className="py-2 flex flex-col scrollbar-inner">
       {conversations.map((conversation, idx) => (
         <Conversation
           key={conversations._id}
