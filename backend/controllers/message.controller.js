@@ -1,5 +1,6 @@
 import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
+import User from "../models/user.model.js";
 import { getReceiverSocketId, io } from "../socket/socket.js";
 export const sendMessage = async (req,res)=>{
     try {
@@ -7,7 +8,7 @@ export const sendMessage = async (req,res)=>{
         const {id:receiverId} = req.params;
 
         const senderId = req.user._id 
-
+        const senderName = await User.findOne({_id:{$ne: senderId}}).select("fullName")
         let conversation = await Conversation.findOne({
             participants:{$all:[senderId,receiverId]},//mongo syntax
         })
@@ -27,6 +28,7 @@ export const sendMessage = async (req,res)=>{
         if(newMessage){
             conversation.messages.push(newMessage._id)
         }
+        const conversationId = conversation._id
         // await conversation.save();
         // await newMessage.save();
         //will run in parallel(song song)
@@ -36,7 +38,7 @@ export const sendMessage = async (req,res)=>{
         const receiverSocketId = getReceiverSocketId(receiverId)
         if(receiverSocketId){
             //sent the event to spectific user
-            io.to(receiverSocketId).emit("newMessage",newMessage)
+            io.to(receiverSocketId).emit("newMessage",{newMessage,senderName,conversationId,receiverId})
         }
         
 
